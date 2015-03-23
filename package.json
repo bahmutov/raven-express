@@ -28,5 +28,9 @@
   "dependencies": {
     "debug-logdown": "0.2.0",
     "raven": "0.7.3"
-  }
+  },
+  "devDependencies": {
+    "pre-git": "0.2.1"
+  },
+  "pre-commit": ["npm test", "npm version"]
 }
