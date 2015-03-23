@@ -1,0 +1,32 @@
+{
+  "name": "raven-express",
+  "version": "0.1.0",
+  "description": "Flexible Sentry Raven client initialization for Node Express server",
+  "main": "index.js",
+  "scripts": {
+    "test": "DEBUG=sentry node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahmutov/raven-express.git"
+  },
+  "keywords": [
+    "raven",
+    "sentry",
+    "error",
+    "reporting",
+    "express",
+    "middleware",
+    "crash"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/raven-express/issues"
+  },
+  "homepage": "https://github.com/bahmutov/raven-express",
+  "dependencies": {
+    "debug-logdown": "0.2.0",
+    "raven": "0.7.3"
+  }
+}
