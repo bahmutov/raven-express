@@ -34,7 +34,12 @@ function formSentryUrl(opts) {
 module.exports = function registerGlobalExceptionHandler(opts) {
   opts = opts || {};
   var env = opts.env || 'development';
+  var release = opts.release || 'dev';
   sentryLogger.info('seting up Sentry crash reporting for', env);
+
+  var sentryOptions = {
+    release: release
+  };
 
   function logError() {
     var args = Array.prototype.slice.call(arguments, 0);
@@ -61,7 +66,7 @@ module.exports = function registerGlobalExceptionHandler(opts) {
       projectId: '101'
     });
     var raven = require('raven');
-    var client = new raven.Client(mockSentryUrl);
+    var client = new raven.Client(mockSentryUrl, sentryOptions);
     client.patchGlobal(logError);
 
     return function mockSentryMiddleware(app) {
@@ -71,7 +76,7 @@ module.exports = function registerGlobalExceptionHandler(opts) {
 
     var raven = require('raven');
     var sentryUrl = formSentryUrl(opts);
-    var client = new raven.Client(sentryUrl);
+    var client = new raven.Client(sentryUrl, sentryOptions);
     client.patchGlobal();
 
     global.Raven = client;
