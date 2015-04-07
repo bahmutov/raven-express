@@ -12,12 +12,12 @@ var middleRegister = ravenExpress({
   env: 'development', // or whatever your config needs
   publicKey: '...',
   secretKey: '...',
-  projectId: '...'
+  projectId: '...',
+  release: 'commit id or similar' // optional, will be 'development' if not set
 });
 // returns a function you can call to register middleware
 middleRegister(app); // where app is express instance
 ```
-
 
 The error logging is using [debug-logdown](https://github.com/bahmutov/debug-logdown) under prefix
 `sentry`. You can see diagnostic messages by setting environment variable
@@ -27,6 +27,9 @@ The error logging is using [debug-logdown](https://github.com/bahmutov/debug-log
 For more details why crash reporting is important for high quality apps, see 
 [Know unknown unknowns with Sentry](http://glebbahmutov.com/blog/know-unknown-unknowns-with-sentry/) and
 my [other Sentry blog posts](http://glebbahmutov.com/blog/tags/sentry/).
+
+`release` - optional commit id or some other identifier to tag the collected errors, see
+[release](http://raven-js.readthedocs.org/en/latest/config/index.html?highlight=release#release) docs.
 
 ### Small print
 
