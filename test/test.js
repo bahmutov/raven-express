@@ -7,6 +7,7 @@ var middleRegister = ravenExpress({
   publicKey: '1234',
   secretKey: 'abcd',
   projectId: '101',
+  domain: 'localhost.com',
   release: 'commit id here'
 })
 

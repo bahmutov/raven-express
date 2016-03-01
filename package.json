@@ -33,7 +33,9 @@
   },
   "homepage": "https://github.com/bahmutov/raven-express",
   "dependencies": {
+    "check-more-types": "2.10.0",
     "debug-logdown": "0.2.0",
+    "lazy-ass": "1.4.0",
     "raven": "0.7.3"
   },
   "devDependencies": {

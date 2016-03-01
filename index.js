@@ -1,5 +1,8 @@
 // see http://glebbahmutov.com/blog/know-unknown-unknowns-with-sentry/
 
+const la = require('lazy-ass')
+const is = require('check-more-types')
+
 Error.stackTraceLimit = 100
 
 var sentryLogger = require('debug-logdown')('sentry')
@@ -24,14 +27,22 @@ function onError (err, req, res, next) {
 }
 /* jshint +W098 */
 
+const validOptions = is.schema({
+  publicKey: is.unemptyString,
+  secretKey: is.unemptyString,
+  projectId: is.unemptyString,
+  domain: is.unemptyString
+})
+
 function formSentryUrl (opts) {
-  if (!opts.publicKey || !opts.secretKey || !opts.projectId) {
-    throw new Error('Missing public, secret or project id in ' + JSON.stringify(opts, null, 2))
-  }
-  return 'https://' + opts.publicKey + ':' + opts.secretKey + '@app.getsentry.com/' + opts.projectId
+  la(validOptions(opts), 'Invalid Sentry options', opts)
+  sentryLogger.info('forming sentry url')
+
+  return 'https://' + opts.publicKey + ':' + opts.secretKey +
+    '@' + opts.domain + '/' + opts.projectId
 }
 
-module.exports = function registerGlobalExceptionHandler (opts) {
+function registerGlobalExceptionHandler (opts) {
   opts = opts || {}
   var env = opts.env || 'development'
   var release = opts.release || 'dev'
@@ -43,7 +54,7 @@ module.exports = function registerGlobalExceptionHandler (opts) {
 
   function logError () {
     var args = Array.prototype.slice.call(arguments, 0)
-    console.log('args', args)
+    console.log('logError args', args)
 
     args.forEach(function (msg) {
       if (msg instanceof Error) {
@@ -58,20 +69,18 @@ module.exports = function registerGlobalExceptionHandler (opts) {
   var client
 
   if (env === 'development') {
+    console.log('development environment')
     global.Raven = {
       captureMessage: sentryLogger.info,
       captureException: logError
     }
 
-    var mockSentryUrl = formSentryUrl({
-      publicKey: '1234',
-      secretKey: 'abcd',
-      projectId: '101'
-    })
+    var mockSentryUrl = formSentryUrl(opts)
     client = new raven.Client(mockSentryUrl, sentryOptions)
     client.patchGlobal(logError)
 
     return function mockSentryMiddleware (app) {
+      console.log('mocking sentry middleware')
       app.use(onError)
     }
   } else {
@@ -87,3 +96,5 @@ module.exports = function registerGlobalExceptionHandler (opts) {
     }
   }
 }
+
+module.exports = registerGlobalExceptionHandler

@@ -20,11 +20,15 @@ var middleRegister = ravenExpress({
   publicKey: '...',
   secretKey: '...',
   projectId: '...',
+  domain: '...',
   release: 'commit id or similar' // optional, will be 'development' if not set
 });
 // returns a function you can call to register middleware
 middleRegister(app); // where app is express instance
 ```
+
+Usually, Sentry just gives you a single url like `https://publicKey:secretKey@domain/projectId`.
+For domain, we set `https` always.
 
 ## Debug and details
 
