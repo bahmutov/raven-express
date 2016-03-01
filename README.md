@@ -2,9 +2,9 @@
 
 > Flexible Sentry Raven client initialization for Node Express server
 
-[![NPM][raven-expres-icon] ][raven-expres-url]
+[![NPM][raven-express-icon] ][raven-express-url]
 
-[![Build status][raven-expres-ci-image] ][raven-expres-ci-url]
+[![Build status][raven-express-ci-image] ][raven-express-ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
 
 ## Use example
