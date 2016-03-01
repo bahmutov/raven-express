@@ -3,8 +3,12 @@
   "version": "0.2.0",
   "description": "Flexible Sentry Raven client initialization for Node Express server",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
-    "test": "DEBUG=sentry node test/test.js"
+    "test": "DEBUG=sentry node test/test.js",
+    "commit": "commit-wizard"
   },
   "repository": {
     "type": "git",
@@ -30,7 +34,16 @@
     "raven": "0.7.3"
   },
   "devDependencies": {
-    "pre-git": "0.2.1"
+    "pre-git": "3.4.0",
+    "standard": "6.0.7"
   },
-  "pre-commit": ["npm test", "npm version"]
+  "config": {
+    "pre-git": {
+      "commit-msg": "simple",
+      "pre-commit": ["npm test"],
+      "pre-push": [],
+      "post-commit": [],
+      "post-merge": []
+    }
+  }
 }
