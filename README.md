@@ -2,6 +2,13 @@
 
 > Flexible Sentry Raven client initialization for Node Express server
 
+[![NPM][raven-expres-icon] ][raven-expres-url]
+
+[![Build status][raven-expres-ci-image] ][raven-expres-ci-url]
+[![semantic-release][semantic-image] ][semantic-url]
+
+## Use example
+
 ```js
 // npm install --save raven-express
 var ravenExpress = require('raven-express');
@@ -18,6 +25,8 @@ var middleRegister = ravenExpress({
 // returns a function you can call to register middleware
 middleRegister(app); // where app is express instance
 ```
+
+## Debug and details
 
 The error logging is using [debug-logdown](https://github.com/bahmutov/debug-logdown) under prefix
 `sentry`. You can see diagnostic messages by setting environment variable
@@ -75,7 +84,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 [raven-express-url]: https://npmjs.org/package/raven-express
 [raven-express-ci-image]: https://travis-ci.org/bahmutov/raven-express.png?branch=master
 [raven-express-ci-url]: https://travis-ci.org/bahmutov/raven-express
-[raven-express-dependencies-image]: https://david-dm.org/bahmutov/raven-express.png
-[raven-express-dependencies-url]: https://david-dm.org/bahmutov/raven-express
-[raven-express-devdependencies-image]: https://david-dm.org/bahmutov/raven-express/dev-status.png
-[raven-express-devdependencies-url]: https://david-dm.org/bahmutov/raven-express#info=devDependencies
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release

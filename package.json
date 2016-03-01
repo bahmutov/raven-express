@@ -1,7 +1,7 @@
 {
   "name": "raven-express",
-  "version": "0.2.0",
   "description": "Flexible Sentry Raven client initialization for Node Express server",
+  "version": "0.0.0-semantic-release",
   "main": "index.js",
   "files": [
     "index.js"
@@ -10,7 +10,8 @@
     "test": "DEBUG=sentry node test/test.js",
     "pretest": "npm run lint",
     "lint": "standard --verbose index.js test/*.js",
-    "commit": "commit-wizard"
+    "commit": "commit-wizard",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
@@ -37,12 +38,15 @@
   },
   "devDependencies": {
     "pre-git": "3.4.0",
-    "standard": "6.0.7"
+    "standard": "6.0.7",
+    "semantic-release": "^4.3.5"
   },
   "config": {
     "pre-git": {
       "commit-msg": "simple",
-      "pre-commit": ["npm test"],
+      "pre-commit": [
+        "npm test"
+      ],
       "pre-push": [],
       "post-commit": [],
       "post-merge": []
