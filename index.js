@@ -9,6 +9,7 @@ var sentryLogger = require('debug-logdown')('sentry')
 
 /* jshint -W098 */
 function onError (err, req, res, next) {
+  console.log('on error')
   /* eslint no-unused-vars:0 */
   // next must be declared in order to get the full signature with error
   // The error id is attached to `res.sentry` to be returned
@@ -76,6 +77,7 @@ function registerGlobalExceptionHandler (opts) {
     }
 
     var mockSentryUrl = formSentryUrl(opts)
+    console.log('mock sentry url', mockSentryUrl)
     client = new raven.Client(mockSentryUrl, sentryOptions)
     client.patchGlobal(logError)
 
