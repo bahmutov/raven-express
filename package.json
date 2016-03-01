@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "test": "DEBUG=sentry node test/test.js",
+    "pretest": "npm run lint",
+    "lint": "standard --verbose index.js test/*.js",
     "commit": "commit-wizard"
   },
   "repository": {
